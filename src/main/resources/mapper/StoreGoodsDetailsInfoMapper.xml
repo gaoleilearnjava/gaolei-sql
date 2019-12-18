@@ -1,0 +1,16 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaolei.sql.mapper.StoreGoodsDetailsInfoMapper">
+    <insert id="addStoreGoodsDetailsInfo">
+        insert into `ecosphere_store`.`store_goods_details_info` s
+        (s.`goods_id`,
+        s.`goods_details`)
+        values
+        <foreach collection="storeGoodsDetailsInfos" item="storeGoodsDetailsInfo" separator=",">
+            (
+            #{storeGoodsDetailsInfo.goods_id},
+            #{storeGoodsDetailsInfo.goods_details}
+            )
+        </foreach>
+        ;
+    </insert>
+</mapper>

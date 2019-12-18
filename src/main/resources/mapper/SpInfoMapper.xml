@@ -1,0 +1,28 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaolei.sql.mapper.SpInfoMapper">
+    <select id="findAllCompanyName" resultType="string">
+        select s.`sp_name` from `ecosphere_sp`.`sp_info` s;
+    </select>
+    <select id="findSpIdBySpName" resultType="string" parameterType="string">
+        select s.`sp_id` from `ecosphere_sp`.`sp_info` s where s.`sp_name` = #{sp_name};
+    </select>
+    <insert id="addSpInfo" parameterType="com.gaolei.sql.pojo.SpInfo">
+        insert into `ecosphere_sp`.`sp_info` s
+        (s.`sp_id`,
+        s.`sp_name`,
+        s.`sp_status`,
+        s.`sp_activity`,
+        s.`sp_source`,
+        s.`sp_update_user`,
+        s.`sp_update_time`)
+        values (
+            #{spInfo.sp_id},
+            #{spInfo.sp_name},
+            #{spInfo.sp_status},
+            #{spInfo.sp_activity},
+            #{spInfo.sp_source},
+            #{spInfo.sp_update_user},
+            now()
+        );
+    </insert>
+</mapper>

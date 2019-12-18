@@ -1,0 +1,22 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaolei.sql.mapper.StorePicInfoMapper">
+    <insert id="saveStorePicInfo" >
+        insert into
+        `ecosphere_store`.`store_pic_info` s
+        (s.`goods_id`, s.`goods_pic_id`, s.`goods_default_pic`)
+        values
+        <foreach collection="storePicInfos" item="storePicInfo" separator=",">
+            (#{storePicInfo.`goods_id`},
+            #{storePicInfo.`goods_pic_id`},
+            #{storePicInfo.`goods_default_pic`})
+        </foreach>
+    </insert>
+    <insert id="saveSingleStorePicInfo" parameterType="com.gaolei.sql.pojo.StorePicInfo">
+        insert into `ecosphere_store`.`store_pic_info` s
+        (s.`goods_id`, s.`goods_pic_id`, s.`goods_default_pic`)
+        values
+        (#{storePicInfo.goods_id},
+        #{storePicInfo.goods_pic_id},
+        #{storePicInfo.goods_default_pic});
+    </insert>
+</mapper>
